@@ -1,0 +1,118 @@
+{
+  "$type": "Sungero.Metadata.SolutionMetadata, Sungero.Metadata",
+  "NameGuid": "f87b49e1-b58d-4b02-9957-9644cc54f757",
+  "Name": "TreeViewer",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "DirRX.TreeViewer.Client",
+  "ClientBaseAssemblyName": "DirRX.TreeViewer.ClientBase",
+  "ClientBaseNamespace": "DirRX.TreeViewer.ClientBase",
+  "ClientNamespace": "DirRX.TreeViewer.Client",
+  "Code": "TreeVie",
+  "CompanyCode": "DirRX",
+  "Cover": {
+    "NameGuid": "96821898-e200-45fe-875c-d06751cb6cc6",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "c6d6ea74-4c0e-4ac4-99fa-d122d84fc838",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "028772c8-a376-4bca-9ea9-940ac839fb94",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "DesktopViews": [],
+  "ExplorerTreeOrder": [
+    {
+      "ItemId": "2f3ec4a1-6cd8-4852-a11b-e5f83032599e"
+    },
+    {
+      "ItemId": "9e938488-a7f7-444d-9f42-55921cad2fb2",
+      "PreviousItemId": "2f3ec4a1-6cd8-4852-a11b-e5f83032599e"
+    },
+    {
+      "ItemId": "37bfc1c2-edb4-49e1-9b89-42c90392df16",
+      "PreviousItemId": "9e938488-a7f7-444d-9f42-55921cad2fb2"
+    },
+    {
+      "ItemId": "33078d7c-9dd6-428d-a47a-de33a71d1fd9",
+      "PreviousItemId": "37bfc1c2-edb4-49e1-9b89-42c90392df16"
+    },
+    {
+      "ItemId": "737f8643-44bd-43c7-a50f-1ced763de662",
+      "PreviousItemId": "33078d7c-9dd6-428d-a47a-de33a71d1fd9"
+    },
+    {
+      "ItemId": "07ffd29d-268b-45ab-aee9-6eaa32f28bbd",
+      "PreviousItemId": "737f8643-44bd-43c7-a50f-1ced763de662"
+    }
+  ],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "DirRX.TreeViewer",
+  "IsolatedAssemblyName": "DirRX.TreeViewer.Isolated",
+  "IsolatedNamespace": "DirRX.TreeViewer.Isolated",
+  "IsVisible": false,
+  "OrderedSpecialFolders": [],
+  "PublicStructures": [],
+  "RemoteComponents": [
+    {
+      "NameGuid": "4dd3f6e7-5383-4f2d-ae11-d7e72fc62aba",
+      "Name": "TreeViewer",
+      "ComponentVersion": "1.0",
+      "Controls": [
+        {
+          "NameGuid": "900210ed-039c-48a5-96d1-5158898b33a8",
+          "Name": "Tree",
+          "DisplayNames": [
+            {
+              "NameGuid": "ab4c8eb2-bdf1-4da5-bf0e-f16bb57cc2d8",
+              "DisplayName": "Дерево",
+              "Locale": "ru"
+            },
+            {
+              "NameGuid": "ae57016c-9d20-4246-94ec-75db947d2081",
+              "DisplayName": "Tree",
+              "Locale": "en"
+            }
+          ],
+          "Loaders": [
+            {
+              "NameGuid": "9aaeabfb-8a40-4048-94d9-2cb4d4c5d4c1",
+              "Name": "tree-loader"
+            }
+          ]
+        }
+      ],
+      "HostApiVersion": "1.0.0",
+      "PublicName": "Directum_ReactExample_1_0"
+    }
+  ],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "DirRX.TreeViewer",
+  "ServerAssemblyName": "DirRX.TreeViewer.Server",
+  "ServerNamespace": "DirRX.TreeViewer.Server",
+  "SharedAssemblyName": "DirRX.TreeViewer.Shared",
+  "SharedNamespace": "DirRX.TreeViewer.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "SolutionMetadata",
+      "Number": 11
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 11
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}
