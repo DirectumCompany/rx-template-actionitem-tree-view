@@ -30,7 +30,7 @@ interface IAttributes {
   Hyperlink: string;
 }
 
-type StatusKey = 'Completed' | 'InProcess' | 'InProcessCurrent' | 'Abort';
+type StatusKey = 'Completed' | 'InProcess' | 'InProcessCurrent' | 'Aborted';
 
 // Конфигурация стилей и иконок для статусов
 const STATUS_CONFIG = {
@@ -46,7 +46,7 @@ const STATUS_CONFIG = {
     border: '2px solid #5783db',
     icon: icons.inProgress,
   },
-  Abort: {
+  Aborted: {
     border: '2px solid #ff3333',
     icon: icons.abort,
   },
