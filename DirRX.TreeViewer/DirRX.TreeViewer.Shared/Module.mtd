@@ -70,19 +70,19 @@
           "Name": "Tree",
           "DisplayNames": [
             {
-              "NameGuid": "ab4c8eb2-bdf1-4da5-bf0e-f16bb57cc2d8",
+              "NameGuid": "7bab0e83-ee71-4502-941e-c328c9ad7dd2",
               "DisplayName": "Дерево",
               "Locale": "ru"
             },
             {
-              "NameGuid": "ae57016c-9d20-4246-94ec-75db947d2081",
+              "NameGuid": "d4bbe9fd-f809-4e24-bbb7-40e6bf09dc81",
               "DisplayName": "Tree",
               "Locale": "en"
             }
           ],
           "Loaders": [
             {
-              "NameGuid": "9aaeabfb-8a40-4048-94d9-2cb4d4c5d4c1",
+              "NameGuid": "6b6df06f-ac9b-4e3c-be92-6f04a433f920",
               "Name": "tree-loader"
             }
           ]
