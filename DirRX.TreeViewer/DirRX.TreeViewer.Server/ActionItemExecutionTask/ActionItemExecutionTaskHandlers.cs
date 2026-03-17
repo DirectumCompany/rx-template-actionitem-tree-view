@@ -16,11 +16,11 @@ namespace DirRX.TreeViewer
       
       if (_obj.ParentAssignment?.Task != null && DirRX.TreeViewer.ActionItemExecutionTasks.Is(_obj.ParentAssignment?.Task))
       {
-        _obj.SuperiorTaskDirRX = DirRX.TreeViewer.ActionItemExecutionTasks.As(_obj.ParentAssignment.Task);
+        _obj.SuperiorTask = DirRX.TreeViewer.ActionItemExecutionTasks.As(_obj.ParentAssignment.Task);
       }
       else if (_obj.ParentTask != null && DirRX.TreeViewer.ActionItemExecutionTasks.Is(_obj.ParentTask))
       {
-        _obj.SuperiorTaskDirRX = DirRX.TreeViewer.ActionItemExecutionTasks.As(_obj.ParentTask);
+        _obj.SuperiorTask = DirRX.TreeViewer.ActionItemExecutionTasks.As(_obj.ParentTask);
       }
     }
   }

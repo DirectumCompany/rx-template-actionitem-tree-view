@@ -5,6 +5,10 @@ namespace DirRX.Tree.Constants
 {
   public static class Module
   {
+    /// <summary>
+    /// Длина имени.
+    /// </summary>
+    public const int LenghtName = 65;
 
   }
 }

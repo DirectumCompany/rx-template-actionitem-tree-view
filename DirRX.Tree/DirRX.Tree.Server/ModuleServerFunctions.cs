@@ -13,7 +13,7 @@ namespace DirRX.Tree.Server
     /// Метод возвращает структуру для формирования дерева отображения задач на исполнение поручения.
     /// </summary>
     /// <param name="id">Ид задачи на исполнение поручения.</param>
-    /// <returns>Возвращает структуру для формирования дерева.</returns>
+    /// <returns>Структура для формирования дерева.</returns>
     [Public(WebApiRequestType = RequestType.Get)]
     public string GetTreeStructureActionItemExecutionTask(long id)
     {
@@ -33,20 +33,20 @@ namespace DirRX.Tree.Server
       
       while (nodes.Count > 0)
       {
-        var childrensNode = new List<DirRX.Tree.Structures.Module.ITask>();
+        var childrenNodes = new List<DirRX.Tree.Structures.Module.ITask>();
         
         foreach (var node in nodes)
         {
-          var childrens = tasks.Where(t => t.SuperiorTaskDirRX.Id == node.attributes.Id).Select(c => this.CreateTreeNode(c));
+          var childrens = tasks.Where(t => t.SuperiorTask.Id == node.attributes.Id).Select(c => this.CreateTreeNode(c));
           
           foreach (var children in childrens)
           {
             node.children.Add(children);
-            childrensNode.Add(children);
+            childrenNodes.Add(children);
           }
         }
         
-        nodes = childrensNode;
+        nodes = childrenNodes;
       }
       
       return JsonConvert.SerializeObject(rootNode);
@@ -60,14 +60,14 @@ namespace DirRX.Tree.Server
     private DirRX.Tree.Structures.Module.ITask CreateTreeNode(DirRX.TreeViewer.IActionItemExecutionTask task)
     {
       var node = DirRX.Tree.Structures.Module.Task.Create();
-      node.name = Sungero.Docflow.PublicFunctions.Module.CutText(task.Subject, 65);
+      node.name = Sungero.Docflow.PublicFunctions.Module.CutText(task.Subject, Tree.Constants.Module.LenghtName);
       
       var attribute = DirRX.Tree.Structures.Module.attributes.Create();
       attribute.Id = task.Id;
       attribute.Assignee = task.Assignee?.Person.ShortName;
       attribute.Deadline = task.Deadline != null ? FormatDate(task.Deadline.Value) : null;
       attribute.Status = task.Status.ToString();
-      attribute.SuperiorTaskId = task.SuperiorTaskDirRX?.Id;
+      attribute.SuperiorTaskId = task.SuperiorTask?.Id;
       attribute.Hyperlink = Hyperlinks.Get(task);
       
       node.attributes = attribute;

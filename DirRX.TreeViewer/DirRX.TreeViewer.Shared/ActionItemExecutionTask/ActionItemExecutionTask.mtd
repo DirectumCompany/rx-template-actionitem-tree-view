@@ -88,6 +88,19 @@
     "IsAncestorMetadata": true,
     "Versions": []
   },
+  "Forms": [
+    {
+      "$type": "Sungero.Metadata.WorkflowEntityStandaloneFormMetadata, Sungero.Workflow.Shared",
+      "NameGuid": "02fae1ba-d7a8-4205-ace1-b3b605572b4c",
+      "Name": "Card",
+      "Controls": [],
+      "IsAncestorMetadata": true,
+      "Overridden": [
+        "SettingsResourceKey"
+      ],
+      "Versions": []
+    }
+  ],
   "FormViewUuid": "ee319940-c8b1-41d1-abbe-deb1b7fab21a",
   "HandledEvents": [
     "BeforeSaveServer"
@@ -180,9 +193,9 @@
     {
       "$type": "Sungero.Metadata.NavigationPropertyMetadata, Sungero.Metadata",
       "NameGuid": "622707f3-dd19-49c0-89c1-97de507eb9f2",
-      "Name": "SuperiorTaskDirRX",
+      "Name": "SuperiorTask",
       "CanBeSearch": false,
-      "Code": "SuperiorTaskDi",
+      "Code": "SuperiorTask",
       "EntityGuid": "2f3ec4a1-6cd8-4852-a11b-e5f83032599e",
       "IsEnabled": false,
       "IsShowedInList": false,

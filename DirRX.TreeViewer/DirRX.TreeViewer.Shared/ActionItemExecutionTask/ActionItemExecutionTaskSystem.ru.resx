@@ -58,7 +58,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Property_SuperiorTaskDirRX" xml:space="preserve">
+  <data name="Property_SuperiorTask" xml:space="preserve">
     <value>Вышестоящая задача</value>
   </data>
 </root>
