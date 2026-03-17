@@ -1,5 +1,5 @@
 # Introduction 
-Пример сторонних контролов для вебклиента с использованием Webpack Module Federation и React
+Пример сторонних контролов для веб-клиента с использованием Webpack Module Federation и React
 
 # Build and Test
 npm run start:standalone - отладочная сборка контрола как отдельного приложения и хостинг (для отладки контрола)
