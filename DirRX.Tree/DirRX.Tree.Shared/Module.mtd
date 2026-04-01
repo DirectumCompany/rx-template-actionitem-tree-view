@@ -1,0 +1,150 @@
+{
+  "$type": "Sungero.Metadata.ModuleMetadata, Sungero.Metadata",
+  "NameGuid": "e23ca699-6f31-4ccb-87de-ba535b2be703",
+  "Name": "Tree",
+  "AsyncHandlers": [],
+  "ClientAssemblyName": "DirRX.Tree.Client",
+  "ClientBaseAssemblyName": "DirRX.Tree.ClientBase",
+  "ClientBaseNamespace": "DirRX.Tree.ClientBase",
+  "ClientNamespace": "DirRX.Tree.Client",
+  "Code": "Tree",
+  "CompanyCode": "DirRX",
+  "Cover": {
+    "NameGuid": "9286ccd2-11e3-447b-9577-304dd7561cb2",
+    "Actions": [],
+    "Background": null,
+    "Footer": {
+      "NameGuid": "9582956b-6349-48ae-ae2a-19a1579fb865",
+      "BackgroundPosition": "Stretch"
+    },
+    "Groups": [],
+    "Header": {
+      "NameGuid": "7e586679-eee9-4f6f-8790-d81e7bdb7a77",
+      "BackgroundPosition": "Stretch"
+    },
+    "RemoteControls": [],
+    "Tabs": []
+  },
+  "Dependencies": [
+    {
+      "Id": "f87b49e1-b58d-4b02-9957-9644cc54f757",
+      "IsSolutionModule": true,
+      "MaxVersion": "",
+      "MinVersion": ""
+    }
+  ],
+  "Importance": "Medium",
+  "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "InterfaceNamespace": "DirRX.Tree",
+  "IsolatedAreas": [
+    {
+      "NameGuid": "d85e6e2c-3c8c-4b2e-8f87-aca093292b83",
+      "Name": "Json"
+    }
+  ],
+  "IsolatedAssemblyName": "DirRX.Tree.Isolated",
+  "IsolatedNamespace": "DirRX.Tree.Isolated",
+  "IsVisible": false,
+  "Libraries": [
+    {
+      "NameGuid": "692c59da-e432-498f-b804-aac476a741fb",
+      "Name": "Json",
+      "Scope": "Both"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "GetTreeStructureActionItemExecutionTask",
+      "Parameters": [
+        {
+          "Name": "id",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String",
+      "WebApiRequestType": "Get"
+    }
+  ],
+  "PublicStructures": [
+    {
+      "Name": "attributes",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "Id",
+          "TypeFullName": "global::System.Int64"
+        },
+        {
+          "Name": "SuperiorTaskId",
+          "IsNullable": true,
+          "TypeFullName": "global::System.Nullable<global::System.Int64>"
+        },
+        {
+          "Name": "Assignee",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Status",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Deadline",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "Hyperlink",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        }
+      ],
+      "StructureNamespace": "DirRX.Tree.Structures.Module"
+    },
+    {
+      "Name": "Task",
+      "IsPublic": true,
+      "Properties": [
+        {
+          "Name": "name",
+          "IsNullable": true,
+          "TypeFullName": "global::System.String"
+        },
+        {
+          "Name": "attributes",
+          "IsNullable": true,
+          "TypeFullName": "global::DirRX.Tree.Structures.Module.Iattributes"
+        },
+        {
+          "Name": "children",
+          "IsList": true,
+          "IsNullable": true,
+          "TypeFullName": "global::System.Collections.Generic.List<global::DirRX.Tree.Structures.Module.ITask>"
+        }
+      ],
+      "StructureNamespace": "DirRX.Tree.Structures.Module"
+    }
+  ],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "DirRX.Tree",
+  "ServerAssemblyName": "DirRX.Tree.Server",
+  "ServerNamespace": "DirRX.Tree.Server",
+  "SharedAssemblyName": "DirRX.Tree.Shared",
+  "SharedNamespace": "DirRX.Tree.Shared",
+  "SpecialFolders": [],
+  "Version": "0.0.1.0",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "ModuleMetadata",
+      "Number": 11
+    },
+    {
+      "Type": "DomainApi",
+      "Number": 3
+    }
+  ]
+}
