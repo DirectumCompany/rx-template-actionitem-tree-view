@@ -1,0 +1,226 @@
+{
+  "gantt": {
+    "title": "Gantt diagram"
+  },
+  "stringControl": {
+    "label": "Subject"
+  },
+  "performedWorkDetailsGrid": {
+    "columns": {
+      "id": "ID",
+      "title": "Title",
+      "jobKind": "Job kind",
+      "duration": "Duration",
+      "comment": "Comment"
+    },
+    "buttons": {
+      "copy": "Copy",
+      "remove": "Remove",
+      "add": "Add entry"
+    },
+    "summary": {
+      "total": "Total"
+    }
+  },
+  "demo": {
+    "sections": {
+      "context": {
+        "title": "Context",
+        "hint": "Data from IRemoteComponentContext, passed by the host when initializing the control."
+      },
+      "logger": {
+        "title": "Logging",
+        "hint": "Logging via context.logger. The logger name is set via WORKAROUND-04 — forced write to the name property, not exposed by the ILogger interface."
+      },
+      "settings": {
+        "title": "getSettings",
+        "hint": "Asynchronous retrieval of component settings via api.getSettings(). Settings are read from config.yaml."
+      },
+      "getEntity": {
+        "title": "getEntity",
+        "hint": "Retrieving the card entity via api.getEntity<T>(). Returns a proxy object."
+      },
+      "lockInfo": {
+        "title": "LockInfo",
+        "hint": "Entity lock information: entity.LockInfo. An entity locked by another user cannot be edited."
+      },
+      "state": {
+        "title": "State",
+        "hint": "Entity state: entity.State. Contains the enabled flag and the state of each property."
+      },
+      "info": {
+        "title": "Info",
+        "hint": "Entity property metadata: entity.Info.properties. Name, type, display value."
+      },
+      "changeProperty": {
+        "title": "changeProperty",
+        "hint": "Changing a property via proxy: entity.changeProperty(name, value). Checks property availability and lock status."
+      },
+      "executeAction": {
+        "title": "executeAction / canExecuteAction",
+        "hint": "Executing an entity action. canExecuteAction checks availability before execution."
+      },
+      "onControlUpdate": {
+        "title": "onControlUpdate",
+        "hint": "Callback invoked by the host when the card changes. The control must update the entity and context."
+      },
+      "ui": {
+        "title": "Modals, tooltips, toasts",
+        "hint": "Modal: Portal + focus. Tooltip: getBoundingClientRect + Portal + scroll tracking. Toasts: Portal stack with auto-dismiss.",
+        "tooltipText": "This is a tooltip rendered via Portal. It tracks trigger position on resize and scroll.",
+        "toastText": "{{type}} notification: Portal + auto-dismiss in 4 sec"
+      },
+      "errorHandling": {
+        "title": "Error handling",
+        "hint": "ErrorBoundary for render errors. Async errors require try/catch + context.logger.error(). All errors must be logged."
+      },
+      "childCollection": {
+        "title": "Child collections",
+        "hint": "IChildEntityCollection methods: addNew, remove, forEach, filter, find, map, sort. Select a collection property below."
+      },
+      "commonGroup": "Common features",
+      "cardGroup": "Card API",
+      "coverGroup": "Cover API",
+      "localStorage": {
+        "title": "localStorage",
+        "hint": "Safe localStorage access with tenant + control name prefix. Without prefix, keys will mix between different apps."
+      }
+    },
+    "badges": {
+      "guidance": "Guidance"
+    },
+    "advice": {
+      "context": "`context` comes from the host and is read-only. Do not modify its fields — changes will not apply and will not be visible to the host.",
+      "logger": "Use `context.logger` instead of `console.log`. Set the logger name via `setLoggerName(context.logger, 'MyComponent')` — this is WORKAROUND-04: ILogger doesn't expose name, we write to it directly.",
+      "settings": "Never read `window`, `window.parent` or `document.cookie` to get settings. The only legitimate way is `api.getSettings()`.",
+      "getEntity": "`entity` is a proxy object. Do not assign properties directly (`entity.Subject = '...'`). Always use `entity.changeProperty()`. Lazy init: `useState(() => api.getEntity())` — the function runs once on first render.",
+      "lockInfo": "Always check `LockInfo` before allowing the user to edit. If `IsLocked && !IsLockedByMe && !IsLockedHere` — the entity is locked by another client.",
+      "state": "Check the entity's `IsEnabled` and each property's `IsEnabled`/`IsVisible`. A property may be visible but not editable.",
+      "info": "Use `Info.properties` to dynamically bind UI to entity metadata. The property name from `controlInfo.propertyName` can always be found in this array.",
+      "changeProperty": "Only `entity.changeProperty(name, value)`. Direct mutation (`entity[prop] = val`) bypasses the proxy interceptor and never reaches the server.",
+      "executeAction": "Always check `canExecuteAction(actionName)` before calling `executeAction`. If the action is unavailable — the host will return an error.",
+      "onControlUpdate": "Always call `api.getEntity()` again inside the callback. The old `entity` reference may point to stale data.",
+      "ui": "Portal + CSS Modules + `--theme_*` = safe and isolated UI. Do not write global styles, do not inject DOM directly into the host container.",
+      "errorHandling": "All errors must be logged via `context.logger.error()`. ErrorBoundary catches only render errors — async errors (`Promise`, `setTimeout`) pass through and require `try/catch`.",
+      "childCollection": "All child entity operations go through the collection methods. Do not mutate the array directly. `addNew` and `remove` are async — refresh entity via `api.getEntity()` after.",
+      "localStorage": "Always prefix keys with `tenant` + control name. Without prefix, keys from different controls and apps under the same tenant will mix. Never read `window.localStorage` directly — use a prefix helper."
+    },
+    "labels": {
+      "userId": "userId",
+      "currentCulture": "currentCulture",
+      "theme": "theme",
+      "clientId": "clientId",
+      "tenant": "tenant",
+      "moduleLicenses": "moduleLicenses",
+      "name": "Name",
+      "version": "Version",
+      "type": "Type",
+      "displayValue": "Display value",
+      "properties": "Properties",
+      "isEnabled": "Enabled",
+      "isRequired": "Required",
+      "isVisible": "Visible",
+      "actionName": "Action name",
+      "status": "Status",
+      "updateCount": "Call count",
+      "lastUpdate": "Last call",
+      "result": "Result",
+      "selectCollection": "Collection"
+    },
+    "buttons": {
+      "logInfo": "Info",
+      "logWarn": "Warn",
+      "logError": "Error",
+      "loadSettings": "Load settings",
+      "loading": "Loading...",
+      "changeProperty": "Change",
+      "executeAction": "Execute",
+      "openModal": "Open modal",
+      "showTooltip": "Show tooltip",
+      "toastInfo": "Info toast",
+      "toastSuccess": "Success toast",
+      "toastError": "Error toast",
+      "touchProperty": "Check",
+      "throwRenderError": "Throw render error",
+      "throwAsyncError": "Throw async error",
+      "safeAsyncCall": "Safe async call",
+      "set": "Set",
+      "remove": "Remove"
+    },
+    "placeholders": {
+      "actionName": "e.g. Save"
+    },
+    "status": {
+      "idle": "idle",
+      "pending": "pending...",
+      "success": "success",
+      "error": "error"
+    },
+    "values": {
+      "notSet": "not set",
+      "notYet": "not called yet",
+      "yes": "yes",
+      "no": "no",
+      "empty": "empty",
+      "notSupported": "N/A"
+    },
+    "warnings": {
+      "nonStandardAction": {
+        "title": "Non-standard action — no CanExecute support",
+        "description": "Save and similar built-in actions do not support canExecuteAction. The check is skipped. For all other actions, checking canExecuteAction is mandatory — otherwise the host may reject execution due to access rights or entity state."
+      },
+      "versionReadOnly": "The {{collectionName}} collection is managed by the host — adding and removing items is not available from a Remote Component. API methods are shown for reference, but mutations are disabled."
+    },
+    "errors": {
+      "caught": "Error caught by ErrorBoundary!",
+      "catchesRender": "Catches render errors",
+      "asyncNotCaught": "Async errors (NOT caught)",
+      "caughtAndLogged": "✓ Error caught & logged",
+      "noCollection": "This entity has no child collections. Section is disabled.",
+      "noEditableProperty": "No editable properties found. Properties are either missing from State or disabled. Section is disabled.",
+      "proxyNote": "Child entity properties are not accessible via reflection — they are host proxy objects. Correct approach: static TypeScript interface + direct property access. Example: src/controls/performed-work-details-grid/"
+    },
+    "modal": {
+      "title": "Demo window",
+      "portal": "This window is rendered via Portal to document.body — it is not in the control's DOM tree.",
+      "cssModules": "All classes come from CSS Modules — they are hashed and do not conflict with the host.",
+      "theme": "Colors and fonts use the host's --theme_* variables — the window inherits the host theme.",
+      "escape": "When opened: body scroll is locked, Escape key closes the window.",
+      "focus": "When closed: focus returns to the element that was active before opening.",
+      "stopPropagation": "stopPropagation on content prevents closing when clicking inside the window."
+    },
+    "versionTable": {
+      "id": "ID",
+      "number": "Number",
+      "author": "Author",
+      "created": "Created",
+      "associatedApp": "Associated app"
+    }
+  },
+  "coverApiDemo": {
+    "sections": {
+      "actionsMetadata": {
+        "title": "getActionsMetadata",
+        "hint": "Getting the list of cover actions via api.getActionsMetadata(). Returns an array of {id, title, description}."
+      },
+      "coverExecuteAction": {
+        "title": "executeAction (Guid)",
+        "hint": "Executing a cover action by Guid identifier via api.executeAction(id). Unlike card API, there is no canExecuteAction method."
+      },
+      "onControlUpdate": {
+        "hint": "Callback invoked by the host when the cover changes from another control. The cover has no entity — the handler updates only the context."
+      }
+    },
+    "advice": {
+      "actionsMetadata": "`api.getActionsMetadata()` returns the current list of available actions. Use it for dynamic UI — don't hardcode identifiers.",
+      "coverExecuteAction": "In Cover API, actions are called by `Guid`. Get the ID from `getActionsMetadata()`. Without `canExecuteAction` — the host itself returns an error.",
+      "onControlUpdate": "Inside the callback, update `setContext()`. The cover has no entity — `getEntity()` is not available. `getActionsMetadata()` is synchronous, no re-fetch needed."
+    },
+    "buttons": {
+      "execute": "Execute"
+    },
+    "labels": {
+      "actionGuid": "Action Guid"
+    }
+  }
+}

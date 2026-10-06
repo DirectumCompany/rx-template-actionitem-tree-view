@@ -1,0 +1,36 @@
+# --- Зависимости ---
+node_modules/
+
+# --- Сборка Webpack (Production build) ---
+dist/
+build/
+out/
+
+# --- Кэш компиляторов и инструментов ---
+.babel-cache/
+.eslintcache/
+.tsconfig.tsbuildinfo
+
+# --- Статика и Конфиги сборки ---
+webpack.config.ts
+
+# --- Окружение и секреты ---
+.env
+.env.*
+!.env.example
+
+# --- Логи и отчеты ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+
+# --- Блокирующие файлы ---
+package-lock.json
+
+# --- Минифицированные файлы ---
+*.min.js
+*.min.css
+
+README.md

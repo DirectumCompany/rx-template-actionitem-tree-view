@@ -1,0 +1,226 @@
+{
+  "gantt": {
+    "title": "Диаграмма Ганта"
+  },
+  "stringControl": {
+    "label": "Содержание"
+  },
+  "performedWorkDetailsGrid": {
+    "columns": {
+      "id": "ИД",
+      "title": "Наименование",
+      "jobKind": "Вид работ",
+      "duration": "Часы",
+      "comment": "Примечание"
+    },
+    "buttons": {
+      "copy": "Скопировать",
+      "remove": "Удалить",
+      "add": "Добавить запись"
+    },
+    "summary": {
+      "total": "Итого"
+    }
+  },
+  "demo": {
+    "sections": {
+      "context": {
+        "title": "Контекст",
+        "hint": "Данные из IRemoteComponentContext, переданного хостом при инициализации контрола."
+      },
+      "logger": {
+        "title": "Логирование",
+        "hint": "Логирование через context.logger. Имя логгера задаётся через WORKAROUND-04 — принудительная запись в свойство name, не экспонируемое интерфейсом ILogger."
+      },
+      "settings": {
+        "title": "getSettings",
+        "hint": "Асинхронное получение настроек компонента через api.getSettings(). Настройки читаются из config.yaml."
+      },
+      "getEntity": {
+        "title": "getEntity",
+        "hint": "Получение сущности карточки через api.getEntity<T>(). Возвращает прокси-объект."
+      },
+      "lockInfo": {
+        "title": "LockInfo",
+        "hint": "Информация о блокировке сущности: entity.LockInfo. Заблокированная не мной сущность недоступна для редактирования."
+      },
+      "state": {
+        "title": "State",
+        "hint": "Состояние сущности: entity.State. Содержит флаг доступности и состояние каждого свойства."
+      },
+      "info": {
+        "title": "Info",
+        "hint": "Метаданные свойств сущности: entity.Info.properties. Имя, тип, отображаемое значение."
+      },
+      "changeProperty": {
+        "title": "changeProperty",
+        "hint": "Изменение свойства через прокси: entity.changeProperty(name, value). С проверкой доступности свойства и блокировки."
+      },
+      "executeAction": {
+        "title": "executeAction / canExecuteAction",
+        "hint": "Выполнение действия сущности. canExecuteAction проверяет доступность перед выполнением."
+      },
+      "onControlUpdate": {
+        "title": "onControlUpdate",
+        "hint": "Колбек, вызываемый хостом при изменении карточки. Контрол должен обновить сущность и контекст."
+      },
+      "ui": {
+        "title": "Модалы, тултипы, тосты",
+        "hint": "Модал: Portal + фокус. Тултип: getBoundingClientRect + Portal + scroll-слежение. Тосты: Portal-стек с автоудалением.",
+        "tooltipText": "Это тултип, отрендеренный через Portal. Он отслеживает позицию триггера при resize и scroll.",
+        "toastText": "{{type}}-уведомление: Portal + автоудаление через 4 сек"
+      },
+      "errorHandling": {
+        "title": "Обработка ошибок",
+        "hint": "ErrorBoundary — для ошибок рендера. Асинхронные ошибки — только try/catch + context.logger.error(). Все ошибки должны логироваться."
+      },
+      "childCollection": {
+        "title": "Дочерние коллекции",
+        "hint": "Методы IChildEntityCollection: addNew, remove, forEach, filter, find, map, sort. Свойство-коллекцию можно выбрать ниже."
+      },
+      "commonGroup": "Общие возможности",
+      "cardGroup": "Card API",
+      "coverGroup": "Cover API",
+      "localStorage": {
+        "title": "localStorage",
+        "hint": "Безопасная работа с localStorage через префикс tenant + имя контрола. Без префикса ключи перемешаются между приложениями."
+      }
+    },
+    "badges": {
+      "guidance": "Рекомендация, официальный API в разработке"
+    },
+    "advice": {
+      "context": "`context` приходит от хоста и доступен только для чтения. Не пытайся модифицировать его поля — изменения не применятся и не будут видны хосту.",
+      "logger": "Используй `context.logger` вместо `console.log`. Установи имя логгера через `setLoggerName(context.logger, 'MyComponent')` — это WORKAROUND-04: ILogger не экспонирует name, меняем напрямую.",
+      "settings": "Никогда не читай `window`, `window.parent` или `document.cookie` для получения настроек. Единственный легальный способ — `api.getSettings()`.",
+      "getEntity": "`entity` — прокси-объект. Не присваивай свойства напрямую (`entity.Subject = '...'`). Всегда используй `entity.changeProperty()`. Ленивая инициализация: `useState(() => api.getEntity())` — функция выполнится один раз при первом рендере.",
+      "lockInfo": "Всегда проверяй `LockInfo` перед тем, как позволить пользователю редактировать. Если `IsLocked && !IsLockedByMe && !IsLockedHere` — сущность заблокирована другим клиентом.",
+      "state": "Проверяй `IsEnabled` сущности и `IsEnabled`/`IsVisible` каждого свойства. Свойство может быть видимо, но недоступно для редактирования.",
+      "info": "Используй `Info.properties` для динамического связывания UI с метаданными сущности. Имя свойства из `controlInfo.propertyName` всегда можно найти в этом массиве.",
+      "changeProperty": "Только `entity.changeProperty(name, value)`. Прямая мутация (`entity[prop] = val`) проходит мимо прокси-перехватчика и не доходит до сервера.",
+      "executeAction": "Всегда проверяй `canExecuteAction(actionName)` перед вызовом `executeAction`. Если действие недоступно — хост вернёт ошибку.",
+      "onControlUpdate": "Внутри колбека всегда делай `api.getEntity()` заново. Старая ссылка на `entity` может указывать на устаревшие данные.",
+      "ui": "Portal + CSS Modules + `--theme_*` = безопасный и изолированный UI. Не пиши стили глобально, не вставляй DOM напрямую в контейнер хоста.",
+      "errorHandling": "Все ошибки должны логироваться через `context.logger.error()`. ErrorBoundary ловит только ошибки рендера — асинхронные (`Promise`, `setTimeout`) пролетают мимо и требуют `try/catch`.",
+      "childCollection": "Все операции с дочерними сущностями — через методы коллекции. Не мутируй массив напрямую. `addNew` и `remove` асинхронные — после них обнови entity через `api.getEntity()`.",
+      "localStorage": "Всегда используй префикс `tenant` + имя контрола в ключах localStorage. Без префикса ключи разных контролов и приложений одного tenant перемешаются. Не читай `window.localStorage` напрямую — используй префикс-функцию."
+    },
+    "labels": {
+      "userId": "userId",
+      "currentCulture": "currentCulture",
+      "theme": "theme",
+      "clientId": "clientId",
+      "tenant": "tenant",
+      "moduleLicenses": "moduleLicenses",
+      "name": "Имя",
+      "version": "Версия",
+      "type": "Тип",
+      "displayValue": "Отображаемое имя",
+      "properties": "Свойства",
+      "isEnabled": "Доступно",
+      "isRequired": "Обязательно",
+      "isVisible": "Видимо",
+      "actionName": "Имя действия",
+      "status": "Статус",
+      "updateCount": "Счетчик вызовов",
+      "lastUpdate": "Последний вызов",
+      "result": "Результат",
+      "selectCollection": "Коллекция"
+    },
+    "buttons": {
+      "logInfo": "Info",
+      "logWarn": "Warn",
+      "logError": "Error",
+      "loadSettings": "Загрузить настройки",
+      "loading": "Загрузка...",
+      "changeProperty": "Изменить",
+      "executeAction": "Выполнить",
+      "openModal": "Открыть модальное окно",
+      "showTooltip": "Показать тултип",
+      "toastInfo": "Info тост",
+      "toastSuccess": "Success тост",
+      "toastError": "Error тост",
+      "touchProperty": "Проверка",
+      "throwRenderError": "Бросить render-ошибку",
+      "throwAsyncError": "Бросить async-ошибку",
+      "safeAsyncCall": "Безопасный async-вызов",
+      "set": "Записать",
+      "remove": "Удалить"
+    },
+    "placeholders": {
+      "actionName": "например, Save"
+    },
+    "status": {
+      "idle": "ожидание",
+      "pending": "выполняется...",
+      "success": "успешно",
+      "error": "ошибка"
+    },
+    "values": {
+      "notSet": "не задано",
+      "notYet": "еще не вызывался",
+      "yes": "да",
+      "no": "нет",
+      "empty": "пусто",
+      "notSupported": "не поддерж."
+    },
+    "warnings": {
+      "nonStandardAction": {
+        "title": "Нестандартное действие — CanExecute не поддерживается",
+        "description": "Save и подобные встроенные действия не поддерживают canExecuteAction. Проверка пропускается. Для всех остальных действий проверка canExecuteAction обязательна — иначе хост может отклонить выполнение из-за прав доступа или состояния сущности."
+      },
+      "versionReadOnly": "Свойство-коллекция {{collectionName}} управляется хостом — добавление и удаление элементов недоступно для стороннего контрола. Методы API показаны для ознакомления, но мутации отключены."
+    },
+    "errors": {
+      "caught": "Ошибка перехвачена ErrorBoundary!",
+      "catchesRender": "Ловит ошибки рендера",
+      "asyncNotCaught": "Асинхронные ошибки (НЕ ловятся)",
+      "caughtAndLogged": "✓ Ошибка перехвачена и залогирована",
+      "noCollection": "У этой сущности нет дочерних коллекций. Секция отключена.",
+      "noEditableProperty": "Нет доступных для редактирования свойств. Свойства либо не найдены в State, либо отключены. Секция отключена.",
+      "proxyNote": "Свойства дочерних сущностей недоступны через рефлексию — это прокси-объекты хоста. Правильный подход: статический TypeScript-интерфейс + прямое обращение к свойствам. Пример: src/controls/performed-work-details-grid/"
+    },
+    "modal": {
+      "title": "Демо-окно",
+      "portal": "Это окно отрендерено через Portal в document.body — его нет в DOM-дереве контрола.",
+      "cssModules": "Все классы взяты из CSS Modules — они хешированы и не конфликтуют с хостом.",
+      "theme": "Цвета и шрифты используют переменные --theme_* хоста — окно наследует тему.",
+      "escape": "При открытии блокируется прокрутка body и ловится клавиша Escape.",
+      "focus": "При закрытии фокус возвращается на элемент, который был активен до открытия.",
+      "stopPropagation": "stopPropagation на контенте предотвращает закрытие при клике внутри окна."
+    },
+    "versionTable": {
+      "id": "ID",
+      "number": "Номер",
+      "author": "Автор",
+      "created": "Создана",
+      "associatedApp": "Приложение"
+    }
+  },
+  "coverApiDemo": {
+    "sections": {
+      "actionsMetadata": {
+        "title": "getActionsMetadata",
+        "hint": "Получение списка действий обложки через api.getActionsMetadata(). Возвращает массив {id, title, description}."
+      },
+      "coverExecuteAction": {
+        "title": "executeAction (Guid)",
+        "hint": "Выполнение действия обложки по Guid-идентификатору через api.executeAction(id). В отличие от карточки, нет метода canExecuteAction."
+      },
+      "onControlUpdate": {
+        "hint": "Колбек, вызываемый хостом при изменении обложки другим контролом. Сущности у обложки нет — контрол должен обновить только контекст."
+      }
+    },
+    "advice": {
+      "actionsMetadata": "`api.getActionsMetadata()` возвращает актуальный список доступных действий. Используй его для динамического построения UI — не хардкодь идентификаторы.",
+      "coverExecuteAction": "В Cover API действие вызывается по `Guid`. Идентификатор нужно получить из `getActionsMetadata()`. Без `canExecuteAction` — ошибку вернёт сам хост.",
+      "onControlUpdate": "Внутри колбека обновляй `setContext()`. Сущности у обложки нет — `getEntity()` недоступен. `getActionsMetadata()` синхронный, перезапрос не нужен."
+    },
+    "buttons": {
+      "execute": "Выполнить"
+    },
+    "labels": {
+      "actionGuid": "Guid действия"
+    }
+  }
+}
