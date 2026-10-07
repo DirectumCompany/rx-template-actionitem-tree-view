@@ -15,12 +15,12 @@ namespace DirRX.Tree.Server
     /// <param name="id">Ид задачи на исполнение поручения.</param>
     /// <returns>Структура для формирования дерева.</returns>
     [Public(WebApiRequestType = RequestType.Get)]
-    public string GetTreeStructureActionItemExecutionTask(long id)
+    public DirRX.Tree.Structures.Module.ITask GetTreeStructureActionItemExecutionTask(long id)
     {
       var actionItemExecutionTask = DirRX.TreeViewer.ActionItemExecutionTasks.GetAll(t => t.Id == id).FirstOrDefault();
       
       if (actionItemExecutionTask == null)
-        return string.Empty;
+        return DirRX.Tree.Structures.Module.Task.Create();
       
       var mainTask = DirRX.TreeViewer.ActionItemExecutionTasks.As(DirRX.TreeViewer.PublicFunctions.ActionItemExecutionTask.GetMainActionItemExecutionTaskPublic(actionItemExecutionTask));
       
@@ -49,7 +49,7 @@ namespace DirRX.Tree.Server
         nodes = childrenNodes;
       }
       
-      return JsonConvert.SerializeObject(rootNode);
+      return rootNode;
     }
     
     /// <summary>

@@ -20,7 +20,7 @@
     "types": ["node"]
   },
   "exclude": ["dist", "locales", "images", "node_modules", "etc"],
-  "include": ["src/**/*", "webpack.config.ts", "component.manifest.js"],
+  "include": ["src", "webpack.config.ts", "component.manifest.js"],
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"

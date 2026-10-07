@@ -1,4 +1,4 @@
-import { getIntegrationServiceUrl } from '../utils/settings'
+import { getIntegrationServiceUrl } from './settings'
 
 export const getAbsoluteUrl = (relativeUrl: string) => getIntegrationServiceUrl() + relativeUrl;
 

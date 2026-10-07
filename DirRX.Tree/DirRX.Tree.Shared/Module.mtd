@@ -62,8 +62,8 @@
           "ParameterTypeFullName": "System.Int64"
         }
       ],
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String",
+      "ReturnType": "global::DirRX.Tree.Structures.Module.ITask",
+      "ReturnTypeFullName": "DirRX.Tree.Structures.Module.ITask",
       "WebApiRequestType": "Get"
     }
   ],
