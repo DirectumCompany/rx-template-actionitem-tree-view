@@ -3,6 +3,10 @@ import { STATUS_CONFIG } from '../../../utils/constants';
 import type { ITask } from '../../tree/types';
 import { resolveStatusKey } from '../status';
 
+import { Card, Tag, Typography  } from 'antd';
+
+const { Text } = Typography;
+
 interface INodeContentProps {
   nodeDatum: ITask;
   entityId: number;
@@ -26,24 +30,77 @@ export const NodeContent: React.FC<INodeContentProps> = ({
   const style = STATUS_CONFIG[statusKey];
 
   return (
-    <div className="nodeCustomMain">
-      <div
-        className="nodeCustom"
-        onClick={toggleNode}
-        style={{ border: style.border }}
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <Card
+        title={name}
+        hoverable={false}
+        onClick={() =>
+          attributes.Hyperlink &&
+          window.open(attributes.Hyperlink, '_blank', 'noopener,noreferrer')
+        }
+        style={{
+          width: '100%',
+          height: '100%',
+          boxSizing: 'border-box',
+          border: style.border,     // ← цвет рамки по статусу
+        }}
+        styles={{
+          header: {
+            fontSize: 14,
+            fontWeight: 600,
+            padding: '0 12px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          },
+          body: { padding: 12 },
+        }}
       >
-        <div className="topContent">
-          <a href={attributes.Hyperlink} target="_blank" rel="noreferrer">
-            {name}
-          </a>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {/* Исполнитель */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Text type="secondary" style={{ fontSize: 12 }}>
+              Исполнитель:
+            </Text>
+            <Text
+              strong
+              style={{
+                fontSize: 12,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {attributes.Assignee}
+            </Text>
+          </div>
+
+          {/* Срок */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Text type="secondary" style={{ fontSize: 12 }}>
+              Срок:
+            </Text>
+            <Tag color="blue" style={{ marginInlineEnd: 0 }}>
+              {attributes.Deadline}
+            </Tag>
+          </div>
         </div>
-        <div className="bottomContent">
-          {attributes.Assignee && <div>{attributes.Assignee}</div>}
-          {attributes.Deadline && <div>{attributes.Deadline}</div>}
-        </div>
-      </div>
+      </Card>
+
+      {/* Иконка статуса в правом нижнем углу */}
       {style.icon && (
-        <img className="statusIcon" src={style.icon} alt={statusKey} />
+        <img
+          src={style.icon}
+          alt={statusKey}
+          style={{
+            position: 'absolute',
+            right: 8,
+            bottom: 8,
+            width: 20,
+            height: 20,
+            pointerEvents: 'none', // чтобы клик по иконке не мешал клику по карточке
+          }}
+        />
       )}
     </div>
   );

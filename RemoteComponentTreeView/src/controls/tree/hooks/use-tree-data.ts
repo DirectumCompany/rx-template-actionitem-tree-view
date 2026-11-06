@@ -20,6 +20,7 @@ export function useTreeData(entityId: number): IUseTreeDataResult {
     try {
       const value = await clientRX.getAllActionItemExecutionTaskForLeadTaskAsync(entityId);
       setData(value);
+      setError(null);
     } catch (err) {
       setError('Не удалось загрузить данные дерева');
       // eslint-disable-next-line no-console

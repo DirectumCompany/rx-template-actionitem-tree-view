@@ -61,6 +61,7 @@
     "webpack-cli": "~5.1.4"
   },
   "dependencies": {
+    "antd": "^6.6.5",
     "clsx": "2.1.1",
     "gantt-task-react": "0.3.9",
     "i18next": "23.11.5",

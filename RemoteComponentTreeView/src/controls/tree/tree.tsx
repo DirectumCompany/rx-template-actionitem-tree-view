@@ -5,6 +5,7 @@ import {
 import './tree.css';
 import { useTreeData } from '../tree/hooks/use-tree-data';
 import { TreeRenderer } from '../tree/components/tree-renderer';
+import { StateMessage } from '../tree/components/state-message';
 import type { IProps } from './types';
 
 const TreeView: React.FC<IProps> = ({ initialContext, api }) => {
@@ -25,15 +26,20 @@ const TreeView: React.FC<IProps> = ({ initialContext, api }) => {
     api.onControlUpdate = handleControlUpdate;
   }, [api, handleControlUpdate]);
 
-  if (isLoading) return <div>Загрузка...</div>;
-  if (error) return <div className="error">{error}</div>;
-  if (!data) return <div>Нет данных</div>;
-
-  return (
-    <div style={{ width: '100vw', height: '100vh' }}>
+return (
+  <div className="tree-view">
+    {isLoading && <StateMessage variant="loading" text="Загрузка..." />}
+    {!isLoading && error && (
+      <StateMessage variant="error" text={`Ошибка: ${error}`} onRetry={refetch} />
+    )}
+    {!isLoading && !error && !data && (
+      <StateMessage variant="empty" text="Нет данных" />
+    )}
+    {!isLoading && !error && data && (
       <TreeRenderer data={data} entityId={entity.Id} />
-    </div>
-  );
+    )}
+  </div>
+);
 };
 
 export default TreeView;
